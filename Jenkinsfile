@@ -27,7 +27,7 @@ pipeline {
             }
 
             steps {
-                sh "${MVN} deploy"
+                sh "${MVN} deploy -DskipTests"
                 stash(name: 'jar', includes: 'target/*.jar')
             }
         }
