@@ -23,12 +23,12 @@
 
     <servers>
         <server>
-            <id>try</id>
+            <id>central</id>
             <username>admin</username>
             <password>Al12341234</password>
         </server>
         <server>
-            <id>asd</id>
+            <id>snapshots</id>
             <username>admin</username>
             <password>Al12341234</password>
         </server>
