@@ -4,12 +4,12 @@
             <id>test</id>
             <repositories>
                 <repository>
-                    <id>try</id>
-                    <name>artifactory-snapshots</name>
+                    <id>central</id>
+                    <name>artifactory-release</name>
                     <url>http://artifactory:8081/artifactory/libs-release-local</url>
                 </repository>
                 <repository>
-                    <id>asd</id>
+                    <id>snapshots</id>
                     <name>artifactory-snapshots</name>
                     <url>http://artifactory:8081/artifactory/libs-snapshot-local</url>
                 </repository>
