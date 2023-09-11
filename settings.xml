@@ -9,7 +9,7 @@
                     <url>http://artifactory:8081/artifactory/libs-release-local</url>
                 </repository>
                 <repository>
-                    <id>try</id>
+                    <id>asd</id>
                     <name>artifactory-snapshots</name>
                     <url>http://artifactory:8081/artifactory/libs-snapshot-local</url>
                 </repository>
@@ -24,6 +24,11 @@
     <servers>
         <server>
             <id>try</id>
+            <username>admin</username>
+            <password>Al12341234</password>
+        </server>
+        <server>
+            <id>asd</id>
             <username>admin</username>
             <password>Al12341234</password>
         </server>
