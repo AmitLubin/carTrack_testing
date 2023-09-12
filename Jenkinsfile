@@ -82,7 +82,7 @@ pipeline {
                     def linesPerFile = 100
                     echo "${linesPerFile}"
                     // Split the lines into four files
-                    for (i = 0; i < 4; i++) {
+                    for (i = 0; i < 3; i++) {
                         def startIndex = i * linesPerFile
                         def endIndex = (i < 3) ? (startIndex + linesPerFile) : lines.size()
                         echo "PER FILE!"
