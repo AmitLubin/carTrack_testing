@@ -84,7 +84,7 @@ pipeline {
                     // Split the lines into four files
                     for (i = 0; i < 3; i++) {
                         def startIndex = i * linesPerFile
-                        def endIndex = (i < 3) ? (startIndex + linesPerFile) : lines.size()
+                        def endIndex = (i < 2) ? (startIndex + linesPerFile) : lines.size()
                         echo "PER FILE!"
                         
                         // Create a new file with the lines
