@@ -21,7 +21,7 @@ pipeline {
             }
         }
 
-        stage('Maven-deploy'){
+        stage('Maven-build'){
             agent {
                 docker {
                     image 'maven:3.6.3-jdk-8'
