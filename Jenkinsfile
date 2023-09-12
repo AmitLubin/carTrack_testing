@@ -30,7 +30,7 @@ pipeline {
             }
 
             steps {
-                sh "${MVN} deploy -DskipTests"
+                sh "${MVN} verify -DskipTests"
             }
         }
 
@@ -121,7 +121,6 @@ pipeline {
                 stage('Test1'){
                     agent {
                         docker {
-                            // label '1'
                             image 'maven:3.6.3-jdk-8'
                             args '--network jenkins_jenkins_network'
                         }
@@ -140,7 +139,6 @@ pipeline {
                 stage('Test2'){
                     agent {
                         docker {
-                            // label '2'
                             image 'maven:3.6.3-jdk-8'
                             args '--network jenkins_jenkins_network'
                         }
@@ -159,7 +157,6 @@ pipeline {
                 stage('Test3'){
                     agent {
                         docker {
-                            // label '3'
                             image 'maven:3.6.3-jdk-8'
                             args '--network jenkins_jenkins_network'
                         }
@@ -175,6 +172,26 @@ pipeline {
                     }
                 }
             }
+        }
+
+        stage('Maven-deploy'){
+            agent {
+                docker {
+                    image 'maven:3.6.3-jdk-8'
+                    args '--network jenkins_jenkins_network'
+                }
+            }
+
+            steps {
+                sh "${MVN} deploy -DskipTests"
+            }
+
+            post {
+                always {
+                    cleanWs()
+                }
+            }
+
         }
 
     }
