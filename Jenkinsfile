@@ -37,7 +37,6 @@ pipeline {
         stage('Get-latest-jars'){
             agent {
                 docker {
-                    // image 'openjdk:8-jre-alpine3.9'
                     image 'maven:3.6.3-jdk-8'
                     args '--network jenkins_jenkins_network'
                 }
@@ -68,7 +67,6 @@ pipeline {
         stage('Test'){
             agent {
                 docker {
-                    // image 'openjdk:8-jre-alpine3.9'
                     image 'maven:3.6.3-jdk-8'
                     args '--network jenkins_jenkins_network'
                 }
