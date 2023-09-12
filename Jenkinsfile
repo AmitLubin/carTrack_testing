@@ -110,6 +110,8 @@ pipeline {
                 sh "ls -l"
                 sh "ls target"
                 stash includes: 'test*r', name: 'tests'
+                stash includes: '*.jar', name: 'jars'
+                stash includes: 'target/*.jar', name: 'simulator'
                 // sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
             }
         }
@@ -127,6 +129,8 @@ pipeline {
 
                     steps {
                         unstash 'tests'
+                        unstash 'jars'
+                        unstash 'simulator'
                         sh "ls"
                         sh "mv test1r tests.txt"
                         sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
@@ -144,6 +148,8 @@ pipeline {
 
                     steps {
                         unstash 'tests'
+                        unstash 'jars'
+                        unstash 'simulator'
                         sh "ls"
                         sh "mv test2r tests.txt"
                         sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
@@ -161,6 +167,8 @@ pipeline {
 
                     steps {
                         unstash 'tests'
+                        unstash 'jars'
+                        unstash 'simulator'
                         sh "ls"
                         sh "mv test3r tests.txt"
                         sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
