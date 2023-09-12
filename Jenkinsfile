@@ -106,31 +106,58 @@ pipeline {
             steps {
                 sh "curl -u admin:Al12341234 -O 'http://artifactory:8082/artifactory/libs-snapshot-local/com/lidar/telemetry/99-SNAPSHOT${JARTM}'"
                 sh "curl -u admin:Al12341234 -O 'http://artifactory:8082/artifactory/libs-snapshot-local/com/lidar/analytics/99-SNAPSHOT${JARAN}'"
+                sh "rm test.txt"
                 sh "ls -l"
                 sh "ls target"
                 // sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
             }
         }
 
-        // stage('Test'){
-        //     parallel {
-        //         stage('Test1'){
+        stage('Test'){
+            parallel {
+                stage('Test1'){
+                    agent {
+                        docker {
+                            image 'maven:3.6.3-jdk-8'
+                            args '--network jenkins_jenkins_network'
+                        }
+                    }
 
-        //         }
+                    steps {
+                        sh "mv test1 tests.txt"
+                        sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
+                    }
+                }
 
-        //         stage('Test2'){
+                stage('Test2'){
+                    agent {
+                        docker {
+                            image 'maven:3.6.3-jdk-8'
+                            args '--network jenkins_jenkins_network'
+                        }
+                    }
 
-        //         }
+                    steps {
+                        sh "mv test2 tests.txt"
+                        sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
+                    }
+                }
 
-        //         stage('Test3'){
+                stage('Test3'){
+                    agent {
+                        docker {
+                            image 'maven:3.6.3-jdk-8'
+                            args '--network jenkins_jenkins_network'
+                        }
+                    }
 
-        //         }
-
-        //         stage('Test4'){
-
-        //         }
-        //     }
-        // }
+                    steps {
+                        sh "mv test3 tests.txt"
+                        sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
+                    }
+                }
+            }
+        }
 
     }
 
