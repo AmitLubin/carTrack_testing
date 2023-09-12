@@ -118,7 +118,7 @@ pipeline {
                 stage('Test1'){
                     agent {
                         docker {
-                            label '1'
+                            // label '1'
                             image 'maven:3.6.3-jdk-8'
                             args '--network jenkins_jenkins_network'
                         }
@@ -126,15 +126,15 @@ pipeline {
 
                     steps {
                         sh "ls"
-                        // sh "mv test1 tests.txt"
-                        // sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
+                        sh "mv test1 tests.txt"
+                        sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
                     }
                 }
 
                 stage('Test2'){
                     agent {
                         docker {
-                            label '2'
+                            // label '2'
                             image 'maven:3.6.3-jdk-8'
                             args '--network jenkins_jenkins_network'
                         }
@@ -142,15 +142,15 @@ pipeline {
 
                     steps {
                         sh "ls"
-                    //     sh "mv test2 tests.txt"
-                    //     sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
+                        sh "mv test2 tests.txt"
+                        sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
                     }
                 }
 
                 stage('Test3'){
                     agent {
                         docker {
-                            label '3'
+                            // label '3'
                             image 'maven:3.6.3-jdk-8'
                             args '--network jenkins_jenkins_network'
                         }
@@ -158,8 +158,8 @@ pipeline {
 
                     steps {
                         sh "ls"
-                        // sh "mv test3 tests.txt"
-                        // sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
+                        sh "mv test3 tests.txt"
+                        sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
                     }
                 }
             }
