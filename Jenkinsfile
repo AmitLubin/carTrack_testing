@@ -64,7 +64,38 @@ pipeline {
             }
         }
 
-        stage('Test'){
+        stage('Split-tests.txt'){
+            agent {
+                docker {
+                    image 'maven:3.6.3-jdk-8'
+                    args '--network jenkins_jenkins_network'
+                }
+            }
+
+            steps {
+                script {
+                    // Read the original file
+                    def originalFile = readFile('tests.txt')
+                    def lines = originalFile.readLines()
+                    echo "Read lines!"
+                    // Calculate the number of lines per file
+                    def linesPerFile = 100
+                    echo "${linesPerFile}"
+                    // Split the lines into four files
+                    for (i = 0; i < 4; i++) {
+                        def startIndex = i * linesPerFile
+                        def endIndex = (i < 3) ? (startIndex + linesPerFile) : lines.size()
+                        echo "PER FILE!"
+                        
+                        // Create a new file with the lines
+                        def outputFile = "test${i + 1}"
+                        writeFile(file: outputFile, text: lines.subList(startIndex, endIndex).join('\n'))
+                    }
+                }
+            }
+        }
+
+        stage('Get-jars'){
             agent {
                 docker {
                     image 'maven:3.6.3-jdk-8'
@@ -77,10 +108,29 @@ pipeline {
                 sh "curl -u admin:Al12341234 -O 'http://artifactory:8082/artifactory/libs-snapshot-local/com/lidar/analytics/99-SNAPSHOT${JARAN}'"
                 sh "ls -l"
                 sh "ls target"
-                sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
+                // sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
             }
         }
 
+        // stage('Test'){
+        //     parallel {
+        //         stage('Test1'){
+
+        //         }
+
+        //         stage('Test2'){
+
+        //         }
+
+        //         stage('Test3'){
+
+        //         }
+
+        //         stage('Test4'){
+
+        //         }
+        //     }
+        // }
 
     }
 
