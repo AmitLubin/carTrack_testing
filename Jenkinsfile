@@ -109,7 +109,7 @@ pipeline {
                 sh "rm tests.txt"
                 sh "ls -l"
                 sh "ls target"
-                stash includes: 'test+' name: 'tests'
+                stash includes: 'test+', name: 'tests'
                 // sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
             }
         }
