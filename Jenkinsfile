@@ -128,7 +128,7 @@ pipeline {
                     steps {
                         unstash 'tests'
                         sh "ls"
-                        sh "mv test1 tests.txt"
+                        sh "mv test1r tests.txt"
                         sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
                     }
                 }
@@ -145,7 +145,7 @@ pipeline {
                     steps {
                         unstash 'tests'
                         sh "ls"
-                        sh "mv test2 tests.txt"
+                        sh "mv test2r tests.txt"
                         sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
                     }
                 }
@@ -162,7 +162,7 @@ pipeline {
                     steps {
                         unstash 'tests'
                         sh "ls"
-                        sh "mv test3 tests.txt"
+                        sh "mv test3r tests.txt"
                         sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
                     }
                 }
