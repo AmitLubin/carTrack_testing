@@ -88,7 +88,7 @@ pipeline {
                         echo "PER FILE!"
                         
                         // Create a new file with the lines
-                        def outputFile = "test${i + 1}"
+                        def outputFile = "test${i + 1}r"
                         writeFile(file: outputFile, text: lines.subList(startIndex, endIndex).join('\n'))
                     }
                 }
@@ -109,7 +109,7 @@ pipeline {
                 sh "rm tests.txt"
                 sh "ls -l"
                 sh "ls target"
-                stash includes: 'test+', name: 'tests'
+                stash includes: 'test*r', name: 'tests'
                 // sh "java -cp .${JARAN}:.${JARTM}:target/simulator-99-SNAPSHOT.jar com.lidar.simulation.Simulator"
             }
         }
